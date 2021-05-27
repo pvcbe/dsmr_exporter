@@ -1,0 +1,13 @@
+[Unit]
+Description=dsmr (p1) data to elastic search exporter
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/dsmr_exporter.
+Restart=on-failure
+
+
+[Install]
+WantedBy=multi-user.target
+

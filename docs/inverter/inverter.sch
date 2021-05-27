@@ -1,0 +1,420 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title "p1 inverter"
+Date "2021-05-16"
+Rev "0"
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L power:GND #PWR0101
+U 1 1 60A21257
+P 1800 1800
+F 0 "#PWR0101" H 1800 1550 50  0001 C CNN
+F 1 "GND" H 1805 1627 50  0000 C CNN
+F 2 "" H 1800 1800 50  0001 C CNN
+F 3 "" H 1800 1800 50  0001 C CNN
+	1    1800 1800
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0102
+U 1 1 60A21688
+P 1800 850
+F 0 "#PWR0102" H 1800 700 50  0001 C CNN
+F 1 "+5V" H 1815 1023 50  0000 C CNN
+F 2 "" H 1800 850 50  0001 C CNN
+F 3 "" H 1800 850 50  0001 C CNN
+	1    1800 850 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R1
+U 1 1 60A23C85
+P 2100 1050
+F 0 "R1" H 2170 1096 50  0000 L CNN
+F 1 "10K" H 2170 1005 50  0000 L CNN
+F 2 "" V 2030 1050 50  0001 C CNN
+F 3 "~" H 2100 1050 50  0001 C CNN
+	1    2100 1050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R3
+U 1 1 60A23FEC
+P 2800 1050
+F 0 "R3" H 2870 1096 50  0000 L CNN
+F 1 "10K" H 2870 1005 50  0000 L CNN
+F 2 "" V 2730 1050 50  0001 C CNN
+F 3 "~" H 2800 1050 50  0001 C CNN
+	1    2800 1050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R2
+U 1 1 60A245A8
+P 2350 1450
+F 0 "R2" V 2557 1450 50  0000 C CNN
+F 1 "1,5K" V 2466 1450 50  0000 C CNN
+F 2 "" V 2280 1450 50  0001 C CNN
+F 3 "~" H 2350 1450 50  0001 C CNN
+	1    2350 1450
+	0    -1   -1   0   
+$EndComp
+Text GLabel 1400 850  0    50   Input ~ 0
+1
+Text GLabel 1400 1000 0    50   Input ~ 0
+2
+Text GLabel 1400 1150 0    50   Input ~ 0
+3
+Text GLabel 1400 1300 0    50   Input ~ 0
+4
+Text GLabel 1400 1450 0    50   Input ~ 0
+5
+Text GLabel 1400 1600 0    50   Input ~ 0
+6
+Wire Wire Line
+	1800 850  1800 1000
+Wire Wire Line
+	1800 1000 1400 1000
+Wire Wire Line
+	1400 850  1800 850 
+Wire Wire Line
+	1800 1600 1400 1600
+Connection ~ 1800 850 
+$Comp
+L Transistor_BJT:BC337 Q1
+U 1 1 60A2E5AF
+P 2700 1450
+F 0 "Q1" H 2891 1496 50  0000 L CNN
+F 1 "BC337" H 2891 1405 50  0000 L CNN
+F 2 "Package_TO_SOT_THT:TO-92_Inline" H 2900 1375 50  0001 L CIN
+F 3 "https://diotec.com/tl_files/diotec/files/pdf/datasheets/bc337.pdf" H 2700 1450 50  0001 L CNN
+	1    2700 1450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1800 1150 1400 1150
+$Comp
+L power:GND #PWR0103
+U 1 1 60A37C4A
+P 2800 1800
+F 0 "#PWR0103" H 2800 1550 50  0001 C CNN
+F 1 "GND" H 2805 1627 50  0000 C CNN
+F 2 "" H 2800 1800 50  0001 C CNN
+F 3 "" H 2800 1800 50  0001 C CNN
+	1    2800 1800
+	1    0    0    -1  
+$EndComp
+Text GLabel 3300 1200 2    50   Output ~ 0
+TTL_RX
+Wire Wire Line
+	3300 1200 2800 1200
+NoConn ~ 1600 1300
+Wire Wire Line
+	1400 1300 1600 1300
+$Comp
+L power:GND #PWR0104
+U 1 1 60A1881C
+P 5450 1600
+F 0 "#PWR0104" H 5450 1350 50  0001 C CNN
+F 1 "GND" H 5455 1427 50  0000 C CNN
+F 2 "" H 5450 1600 50  0001 C CNN
+F 3 "" H 5450 1600 50  0001 C CNN
+	1    5450 1600
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0105
+U 1 1 60A1892C
+P 5450 850
+F 0 "#PWR0105" H 5450 700 50  0001 C CNN
+F 1 "+5V" H 5465 1023 50  0000 C CNN
+F 2 "" H 5450 850 50  0001 C CNN
+F 3 "" H 5450 850 50  0001 C CNN
+	1    5450 850 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:CP C1
+U 1 1 60A18936
+P 5750 1000
+F 0 "C1" H 5868 1046 50  0000 L CNN
+F 1 "100µF" H 5868 955 50  0000 L CNN
+F 2 "" H 5788 850 50  0001 C CNN
+F 3 "~" H 5750 1000 50  0001 C CNN
+	1    5750 1000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:CP C2
+U 1 1 60A18940
+P 6850 1000
+F 0 "C2" H 6968 1046 50  0000 L CNN
+F 1 "100µF" H 6968 955 50  0000 L CNN
+F 2 "" H 6888 850 50  0001 C CNN
+F 3 "~" H 6850 1000 50  0001 C CNN
+	1    6850 1000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R1
+U 1 1 60A1894A
+P 6100 2300
+F 0 "R1" H 6170 2346 50  0000 L CNN
+F 1 "10K" H 6170 2255 50  0000 L CNN
+F 2 "" V 6030 2300 50  0001 C CNN
+F 3 "~" H 6100 2300 50  0001 C CNN
+	1    6100 2300
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R3
+U 1 1 60A18954
+P 6950 2100
+F 0 "R3" H 7020 2146 50  0000 L CNN
+F 1 "10K" H 7020 2055 50  0000 L CNN
+F 2 "" V 6880 2100 50  0001 C CNN
+F 3 "~" H 6950 2100 50  0001 C CNN
+	1    6950 2100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R2
+U 1 1 60A1895E
+P 6500 2600
+F 0 "R2" V 6707 2600 50  0000 C CNN
+F 1 "1,5K" V 6616 2600 50  0000 C CNN
+F 2 "" V 6430 2600 50  0001 C CNN
+F 3 "~" H 6500 2600 50  0001 C CNN
+	1    6500 2600
+	0    -1   -1   0   
+$EndComp
+Text GLabel 5050 850  0    50   Input ~ 0
+1
+Text GLabel 5050 1000 0    50   Input ~ 0
+2
+Text GLabel 5050 1150 0    50   Input ~ 0
+3
+Text GLabel 5050 1300 0    50   Input ~ 0
+4
+Text GLabel 5050 1450 0    50   Input ~ 0
+5
+Text GLabel 5050 1600 0    50   Input ~ 0
+6
+Wire Wire Line
+	5450 850  5450 1000
+Wire Wire Line
+	5450 1000 5050 1000
+Wire Wire Line
+	5050 850  5450 850 
+Wire Wire Line
+	5450 1600 5050 1600
+Connection ~ 5450 850 
+$Comp
+L Regulator_Linear:AZ1117-3.3 U1
+U 1 1 60A18973
+P 6400 850
+F 0 "U1" H 6400 1092 50  0000 C CNN
+F 1 "AZ1117-3.3" H 6400 1001 50  0000 C CNN
+F 2 "" H 6400 1100 50  0001 C CIN
+F 3 "https://www.diodes.com/assets/Datasheets/AZ1117.pdf" H 6400 850 50  0001 C CNN
+	1    6400 850 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5450 850  5750 850 
+$Comp
+L power:+3.3V #PWR0106
+U 1 1 60A1897E
+P 6850 850
+F 0 "#PWR0106" H 6850 700 50  0001 C CNN
+F 1 "+3.3V" H 6865 1023 50  0000 C CNN
+F 2 "" H 6850 850 50  0001 C CNN
+F 3 "" H 6850 850 50  0001 C CNN
+	1    6850 850 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Transistor_BJT:BC337 Q1
+U 1 1 60A18988
+P 6850 2600
+F 0 "Q1" H 7041 2646 50  0000 L CNN
+F 1 "BC337" H 7041 2555 50  0000 L CNN
+F 2 "Package_TO_SOT_THT:TO-92_Inline" H 7050 2525 50  0001 L CIN
+F 3 "https://diotec.com/tl_files/diotec/files/pdf/datasheets/bc337.pdf" H 6850 2600 50  0001 L CNN
+	1    6850 2600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5450 1150 5050 1150
+Wire Wire Line
+	5750 850  6100 850 
+Connection ~ 5750 850 
+Wire Wire Line
+	6700 850  6850 850 
+Connection ~ 6850 850 
+$Comp
+L power:GND #PWR0107
+U 1 1 60A18997
+P 6950 2800
+F 0 "#PWR0107" H 6950 2550 50  0001 C CNN
+F 1 "GND" H 6955 2627 50  0000 C CNN
+F 2 "" H 6950 2800 50  0001 C CNN
+F 3 "" H 6950 2800 50  0001 C CNN
+	1    6950 2800
+	1    0    0    -1  
+$EndComp
+Text GLabel 5950 2600 0    50   Input ~ 0
+5
+Wire Wire Line
+	5950 2600 6100 2600
+Wire Wire Line
+	6100 2450 6100 2600
+Connection ~ 6100 2600
+Wire Wire Line
+	6950 2400 6950 2300
+Text GLabel 7450 2300 2    50   Output ~ 0
+RX
+Wire Wire Line
+	7450 2300 6950 2300
+Connection ~ 6950 2300
+Wire Wire Line
+	6950 2300 6950 2250
+$Comp
+L power:+3.3V #PWR0108
+U 1 1 60A189AA
+P 6950 1950
+F 0 "#PWR0108" H 6950 1800 50  0001 C CNN
+F 1 "+3.3V" H 6965 2123 50  0000 C CNN
+F 2 "" H 6950 1950 50  0001 C CNN
+F 3 "" H 6950 1950 50  0001 C CNN
+	1    6950 1950
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0109
+U 1 1 60A189B4
+P 6100 1950
+F 0 "#PWR0109" H 6100 1800 50  0001 C CNN
+F 1 "+5V" H 6115 2123 50  0000 C CNN
+F 2 "" H 6100 1950 50  0001 C CNN
+F 3 "" H 6100 1950 50  0001 C CNN
+	1    6100 1950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6100 1950 6100 2150
+Wire Wire Line
+	6100 2600 6350 2600
+Wire Wire Line
+	5450 1600 5750 1600
+Connection ~ 5450 1600
+Wire Wire Line
+	6850 1150 6850 1600
+Wire Wire Line
+	6400 1150 6400 1600
+Connection ~ 6400 1600
+Wire Wire Line
+	6400 1600 6850 1600
+Wire Wire Line
+	5750 1150 5750 1600
+Connection ~ 5750 1600
+Wire Wire Line
+	5750 1600 6400 1600
+Wire Wire Line
+	5450 1150 5450 1600
+NoConn ~ 5250 1300
+Wire Wire Line
+	5050 1300 5250 1300
+$Comp
+L power:GND #PWR0110
+U 1 1 60A2AF84
+P 1800 1150
+F 0 "#PWR0110" H 1800 900 50  0001 C CNN
+F 1 "GND" H 1805 977 50  0000 C CNN
+F 2 "" H 1800 1150 50  0001 C CNN
+F 3 "" H 1800 1150 50  0001 C CNN
+	1    1800 1150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2800 850  2800 900 
+Connection ~ 2800 900 
+Wire Wire Line
+	2800 900  2800 950 
+Wire Wire Line
+	2800 1200 2800 1250
+Connection ~ 2800 1200
+Wire Wire Line
+	2800 1800 2800 1650
+Wire Wire Line
+	1800 850  2100 850 
+Wire Wire Line
+	1400 1450 2100 1450
+Wire Wire Line
+	2100 1200 2100 1450
+Connection ~ 2100 1450
+Wire Wire Line
+	2100 1450 2200 1450
+Wire Wire Line
+	2100 900  2100 850 
+Connection ~ 2100 850 
+Wire Wire Line
+	2100 850  2800 850 
+Wire Wire Line
+	1800 1600 1800 1800
+Text GLabel 3300 1500 2    50   Output ~ 0
+TTL_GND
+$Comp
+L power:GND #PWR0111
+U 1 1 60A3B44D
+P 3200 1800
+F 0 "#PWR0111" H 3200 1550 50  0001 C CNN
+F 1 "GND" H 3205 1627 50  0000 C CNN
+F 2 "" H 3200 1800 50  0001 C CNN
+F 3 "" H 3200 1800 50  0001 C CNN
+	1    3200 1800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3200 1800 3200 1500
+Wire Wire Line
+	3200 1500 3300 1500
+Wire Notes Line
+	1200 700  1500 700 
+Wire Notes Line
+	1500 700  1500 1750
+Wire Notes Line
+	1500 1750 1200 1750
+Wire Notes Line
+	1200 1750 1200 700 
+Text Label 850  650  0    50   ~ 0
+P1_connector_RJ12
+Wire Notes Line
+	5150 700  5150 1750
+Wire Notes Line
+	5150 1750 4850 1750
+Wire Notes Line
+	4850 1750 4850 700 
+Wire Notes Line
+	4850 700  5150 700 
+Text Label 4500 650  0    50   ~ 0
+P1_connector_RJ12
+Text GLabel 7450 850  2    50   Output ~ 0
++3,3V
+Wire Wire Line
+	6850 850  7450 850 
+Wire Wire Line
+	6850 1600 7450 1600
+Connection ~ 6850 1600
+Text GLabel 7450 1600 2    50   Output ~ 0
+GND
+$EndSCHEMATC
