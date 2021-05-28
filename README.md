@@ -1,20 +1,20 @@
 # dsmr exporter
 
 
-dsmr exporter is a daemon that reads p1 data (dsmr) and converts it to a elastic search document.
+dsmr exporter is a daemon that reads smart meter  p1 data (dsmr) and converts it to a elastic search document.
 
 dsmr_exporter can read data from: 
 - multiple serial port's
 - multiple esp8266's
 
-This software needs hardware to work.  To find out more about the supported hardware, check out [hardware.md]
+This software needs hardware to work.  To find out more about the supported hardware, check out [docs/hardware.md]
 
 
 # installation
 
 ## from source
 
-    git clone https://github.com/pvc_be/dsmr_exporter.git
+    git clone https://github.com/pvcbe/dsmr_exporter.git
     pip3 install elasticsearch
     
 ## pip
@@ -26,7 +26,7 @@ TODO
 
 this example reads data from the *ttyUSB0* serial port and export the data to host *192.168.0.103*
 
-     dsmr_exporter.py --serial /dev/ttyUSB0 --elastic-host 192.168.0.103
+     ./dsmr_exporter.py --serial /dev/ttyUSB0 --elastic-host 192.168.0.103
 
 - attention: your user needs read access to the serial device
 
@@ -34,7 +34,7 @@ this example reads data from the *ttyUSB0* serial port and export the data to ho
     export P1_SERIAL=/dev/ttyUSB0
     export P1_HOST=10.0.0.16:5678,172.16.0.2:8898
     export ELASTIC_HOST=192.168.0.103:1234
-    dsmr_exporter.py
+    ./dsmr_exporter.py
     
 this example uses environment variables to read its config:
 - serial input on `/dev/ttyUSB0`
