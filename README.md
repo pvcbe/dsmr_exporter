@@ -1,4 +1,4 @@
-#dsmr exporter
+# dsmr exporter
 
 
 dsmr exporter is a daemon that reads p1 data (dsmr) and converts it to a elastic search document.
