@@ -1,0 +1,91 @@
+{
+  "version": "7.12.1",
+  "objects": [
+    {
+      "id": "e97b04b0-c150-11eb-9972-67e482169278",
+      "type": "dashboard",
+      "namespaces": [
+        "default"
+      ],
+      "updated_at": "2021-05-30T14:11:22.363Z",
+      "version": "WzIwMjQsM10=",
+      "attributes": {
+        "title": "dsmr data example graph",
+        "hits": 0,
+        "description": "",
+        "panelsJSON": "[{\"version\":\"7.12.1\",\"type\":\"lens\",\"gridData\":{\"x\":0,\"y\":0,\"w\":48,\"h\":12,\"i\":\"a4ca6e85-d4df-4104-a713-cc37f2ad2e2b\"},\"panelIndex\":\"a4ca6e85-d4df-4104-a713-cc37f2ad2e2b\",\"embeddableConfig\":{\"attributes\":{\"title\":\"\",\"type\":\"lens\",\"visualizationType\":\"lnsXY\",\"state\":{\"datasourceStates\":{\"indexpattern\":{\"layers\":{\"da249c6c-81b1-4526-8128-e3801d8543c1\":{\"columns\":{\"83a1a59c-30c4-499b-9c3f-983de85ef676\":{\"label\":\"@timestamp\",\"dataType\":\"date\",\"operationType\":\"date_histogram\",\"sourceField\":\"@timestamp\",\"isBucketed\":true,\"scale\":\"interval\",\"params\":{\"interval\":\"auto\"}},\"71a02c1a-2837-4948-85f8-a67662575877\":{\"label\":\"used Watt\",\"dataType\":\"number\",\"operationType\":\"median\",\"sourceField\":\"1-0:1.7.0\",\"isBucketed\":false,\"scale\":\"ratio\",\"params\":{\"format\":{\"id\":\"number\",\"params\":{\"decimals\":2}}},\"customLabel\":true},\"e611d5f3-686e-4a7f-a9a3-94adc65fca19\":{\"label\":\"generated W \",\"dataType\":\"number\",\"operationType\":\"median\",\"sourceField\":\"1-0:2.7.0\",\"isBucketed\":false,\"scale\":\"ratio\",\"params\":{\"format\":{\"id\":\"number\",\"params\":{\"decimals\":2}}},\"customLabel\":true}},\"columnOrder\":[\"83a1a59c-30c4-499b-9c3f-983de85ef676\",\"71a02c1a-2837-4948-85f8-a67662575877\",\"e611d5f3-686e-4a7f-a9a3-94adc65fca19\"],\"incompleteColumns\":{}}}}},\"visualization\":{\"legend\":{\"isVisible\":true,\"position\":\"right\"},\"valueLabels\":\"hide\",\"fittingFunction\":\"None\",\"axisTitlesVisibilitySettings\":{\"x\":true,\"yLeft\":true,\"yRight\":true},\"tickLabelsVisibilitySettings\":{\"x\":true,\"yLeft\":true,\"yRight\":true},\"gridlinesVisibilitySettings\":{\"x\":true,\"yLeft\":true,\"yRight\":true},\"preferredSeriesType\":\"line\",\"layers\":[{\"layerId\":\"da249c6c-81b1-4526-8128-e3801d8543c1\",\"accessors\":[\"71a02c1a-2837-4948-85f8-a67662575877\",\"e611d5f3-686e-4a7f-a9a3-94adc65fca19\"],\"position\":\"top\",\"seriesType\":\"line\",\"showGridlines\":false,\"xAccessor\":\"83a1a59c-30c4-499b-9c3f-983de85ef676\",\"yConfig\":[{\"forAccessor\":\"71a02c1a-2837-4948-85f8-a67662575877\",\"color\":\"#ff0000\"}]}]},\"query\":{\"query\":\"\",\"language\":\"kuery\"},\"filters\":[]},\"references\":[{\"type\":\"index-pattern\",\"id\":\"83f5cb00-3278-11eb-924c-e9a5a371fd83\",\"name\":\"indexpattern-datasource-current-indexpattern\"},{\"type\":\"index-pattern\",\"id\":\"83f5cb00-3278-11eb-924c-e9a5a371fd83\",\"name\":\"indexpattern-datasource-layer-da249c6c-81b1-4526-8128-e3801d8543c1\"}]},\"hidePanelTitles\":false,\"enhancements\":{}},\"title\":\"Watt's\"},{\"version\":\"7.12.1\",\"type\":\"lens\",\"gridData\":{\"x\":0,\"y\":12,\"w\":48,\"h\":11,\"i\":\"a12e9c0f-6ad3-4348-9ed6-554fe69aa8dd\"},\"panelIndex\":\"a12e9c0f-6ad3-4348-9ed6-554fe69aa8dd\",\"embeddableConfig\":{\"attributes\":{\"title\":\"\",\"type\":\"lens\",\"visualizationType\":\"lnsXY\",\"state\":{\"datasourceStates\":{\"indexpattern\":{\"layers\":{\"c3f499df-d5ab-4381-acce-95031f5a97ad\":{\"columns\":{\"20f48e46-7518-4c8f-b75e-e3eb21195a91\":{\"label\":\"@timestamp\",\"dataType\":\"date\",\"operationType\":\"date_histogram\",\"sourceField\":\"@timestamp\",\"isBucketed\":true,\"scale\":\"interval\",\"params\":{\"interval\":\"auto\"}},\"59ecf2a8-8549-4244-b7d4-11bcf2cb4fb6\":{\"label\":\"phase 1 Volt\",\"dataType\":\"number\",\"operationType\":\"avg\",\"sourceField\":\"1-0:32.7.0\",\"isBucketed\":false,\"scale\":\"ratio\",\"params\":{\"format\":{\"id\":\"number\",\"params\":{\"decimals\":2}}},\"customLabel\":true},\"83bb811e-e11a-4dcf-854e-9d88a8a8ee7d\":{\"label\":\"phase 2 Volt\",\"dataType\":\"number\",\"operationType\":\"avg\",\"sourceField\":\"1-0:52.7.0\",\"isBucketed\":false,\"scale\":\"ratio\",\"params\":{\"format\":{\"id\":\"number\",\"params\":{\"decimals\":2}}},\"customLabel\":true},\"c1bb8dfe-d3ec-423c-996c-b7839584c687\":{\"label\":\"phase 3 Volt\",\"dataType\":\"number\",\"operationType\":\"avg\",\"sourceField\":\"1-0:72.7.0\",\"isBucketed\":false,\"scale\":\"ratio\",\"params\":{\"format\":{\"id\":\"number\",\"params\":{\"decimals\":2}}},\"customLabel\":true}},\"columnOrder\":[\"20f48e46-7518-4c8f-b75e-e3eb21195a91\",\"59ecf2a8-8549-4244-b7d4-11bcf2cb4fb6\",\"83bb811e-e11a-4dcf-854e-9d88a8a8ee7d\",\"c1bb8dfe-d3ec-423c-996c-b7839584c687\"],\"incompleteColumns\":{}}}}},\"visualization\":{\"legend\":{\"isVisible\":true,\"position\":\"right\"},\"valueLabels\":\"hide\",\"fittingFunction\":\"None\",\"axisTitlesVisibilitySettings\":{\"x\":true,\"yLeft\":true,\"yRight\":true},\"tickLabelsVisibilitySettings\":{\"x\":true,\"yLeft\":true,\"yRight\":true},\"gridlinesVisibilitySettings\":{\"x\":true,\"yLeft\":true,\"yRight\":true},\"preferredSeriesType\":\"line\",\"layers\":[{\"layerId\":\"c3f499df-d5ab-4381-acce-95031f5a97ad\",\"accessors\":[\"59ecf2a8-8549-4244-b7d4-11bcf2cb4fb6\",\"83bb811e-e11a-4dcf-854e-9d88a8a8ee7d\",\"c1bb8dfe-d3ec-423c-996c-b7839584c687\"],\"position\":\"top\",\"seriesType\":\"line\",\"showGridlines\":false,\"xAccessor\":\"20f48e46-7518-4c8f-b75e-e3eb21195a91\",\"yConfig\":[{\"forAccessor\":\"59ecf2a8-8549-4244-b7d4-11bcf2cb4fb6\",\"axisMode\":\"auto\"}]}]},\"query\":{\"query\":\"\",\"language\":\"kuery\"},\"filters\":[]},\"references\":[{\"type\":\"index-pattern\",\"id\":\"83f5cb00-3278-11eb-924c-e9a5a371fd83\",\"name\":\"indexpattern-datasource-current-indexpattern\"},{\"type\":\"index-pattern\",\"id\":\"83f5cb00-3278-11eb-924c-e9a5a371fd83\",\"name\":\"indexpattern-datasource-layer-c3f499df-d5ab-4381-acce-95031f5a97ad\"}]},\"hidePanelTitles\":false,\"enhancements\":{}},\"title\":\"phase voltage\"}]",
+        "optionsJSON": "{\"hidePanelTitles\":false,\"useMargins\":true}",
+        "version": 1,
+        "timeRestore": false,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"query\":{\"language\":\"kuery\",\"query\":\"\"},\"filter\":[]}"
+        }
+      },
+      "references": [
+        {
+          "type": "index-pattern",
+          "id": "83f5cb00-3278-11eb-924c-e9a5a371fd83",
+          "name": "indexpattern-datasource-current-indexpattern"
+        },
+        {
+          "type": "index-pattern",
+          "id": "83f5cb00-3278-11eb-924c-e9a5a371fd83",
+          "name": "indexpattern-datasource-layer-da249c6c-81b1-4526-8128-e3801d8543c1"
+        },
+        {
+          "type": "index-pattern",
+          "id": "83f5cb00-3278-11eb-924c-e9a5a371fd83",
+          "name": "indexpattern-datasource-current-indexpattern"
+        },
+        {
+          "type": "index-pattern",
+          "id": "83f5cb00-3278-11eb-924c-e9a5a371fd83",
+          "name": "indexpattern-datasource-layer-c3f499df-d5ab-4381-acce-95031f5a97ad"
+        },
+        {
+          "id": "e687dc60-c150-11eb-9972-67e482169278",
+          "type": "tag",
+          "name": "tag-e687dc60-c150-11eb-9972-67e482169278"
+        }
+      ],
+      "migrationVersion": {
+        "dashboard": "7.11.0"
+      },
+      "coreMigrationVersion": "7.12.1"
+    },
+    {
+      "id": "83f5cb00-3278-11eb-924c-e9a5a371fd83",
+      "type": "index-pattern",
+      "namespaces": [
+        "default"
+      ],
+      "updated_at": "2020-12-03T07:08:03.940Z",
+      "version": "WzE1MDAsM10=",
+      "attributes": {
+        "title": "dsmr-*",
+        "timeFieldName": "@timestamp",
+        "fields": "[{\"name\":\"0-0:1.0.0\",\"type\":\"string\",\"esTypes\":[\"text\"],\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"0-0:1.0.0.keyword\",\"type\":\"string\",\"esTypes\":[\"keyword\"],\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"subType\":{\"multi\":{\"parent\":\"0-0:1.0.0\"}}},{\"name\":\"0-0:17.0.0\",\"type\":\"number\",\"esTypes\":[\"float\"],\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"0-0:96.1.1\",\"type\":\"number\",\"esTypes\":[\"float\"],\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"0-0:96.1.4\",\"type\":\"number\",\"esTypes\":[\"float\"],\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"0-0:96.13.0\",\"type\":\"string\",\"esTypes\":[\"text\"],\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"0-0:96.13.0.keyword\",\"type\":\"string\",\"esTypes\":[\"keyword\"],\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"subType\":{\"multi\":{\"parent\":\"0-0:96.13.0\"}}},{\"name\":\"0-0:96.14.0\",\"type\":\"number\",\"esTypes\":[\"float\"],\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"0-0:96.3.10\",\"type\":\"number\",\"esTypes\":[\"float\"],\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"1-0:1.7.0\",\"type\":\"number\",\"esTypes\":[\"float\"],\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"1-0:1.8.1\",\"type\":\"number\",\"esTypes\":[\"float\"],\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"1-0:1.8.2\",\"type\":\"number\",\"esTypes\":[\"float\"],\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"1-0:2.7.0\",\"type\":\"number\",\"esTypes\":[\"float\"],\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"1-0:2.8.1\",\"type\":\"number\",\"esTypes\":[\"float\"],\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"1-0:2.8.2\",\"type\":\"number\",\"esTypes\":[\"float\"],\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"1-0:31.4.0\",\"type\":\"number\",\"esTypes\":[\"float\"],\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"1-0:31.7.0\",\"type\":\"number\",\"esTypes\":[\"float\"],\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"1-0:32.7.0\",\"type\":\"number\",\"esTypes\":[\"float\"],\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"1-0:51.7.0\",\"type\":\"number\",\"esTypes\":[\"float\"],\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"1-0:52.7.0\",\"type\":\"number\",\"esTypes\":[\"float\"],\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"1-0:71.7.0\",\"type\":\"number\",\"esTypes\":[\"float\"],\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"1-0:72.7.0\",\"type\":\"number\",\"esTypes\":[\"float\"],\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"@timestamp\",\"type\":\"date\",\"esTypes\":[\"date\"],\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"_id\",\"type\":\"string\",\"esTypes\":[\"_id\"],\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false},{\"name\":\"_index\",\"type\":\"string\",\"esTypes\":[\"_index\"],\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false},{\"name\":\"_score\",\"type\":\"number\",\"count\":0,\"scripted\":false,\"searchable\":false,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"_source\",\"type\":\"_source\",\"esTypes\":[\"_source\"],\"count\":0,\"scripted\":false,\"searchable\":false,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"_type\",\"type\":\"string\",\"esTypes\":[\"_type\"],\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false}]"
+      },
+      "references": [],
+      "migrationVersion": {
+        "index-pattern": "7.11.0"
+      }
+    },
+    {
+      "id": "e687dc60-c150-11eb-9972-67e482169278",
+      "type": "tag",
+      "namespaces": [
+        "default"
+      ],
+      "updated_at": "2021-05-30T14:11:17.414Z",
+      "version": "WzIwMjIsM10=",
+      "attributes": {
+        "name": "dsmr",
+        "description": "",
+        "color": "#75bc1e"
+      },
+      "references": [],
+      "coreMigrationVersion": "7.12.1"
+    }
+  ]
+}
