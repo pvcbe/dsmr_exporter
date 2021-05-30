@@ -36,6 +36,7 @@ this example reads data from the *ttyUSB0* serial port and export the data to ho
     export P1_HOST=10.0.0.16:5678,172.16.0.2:8898
     export ELASTIC_HOST=192.168.0.103:1234
     ./dsmr_exporter.py
+
     
 this example uses environment variables to read its config:
 - serial input on `/dev/ttyUSB0`
