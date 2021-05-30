@@ -4,7 +4,7 @@ After=network-online.target
 
 [Service]
 Type=simple
-ExecStart=/usr/local/bin/dsmr_exporter.
+ExecStart=/usr/local/bin/dsmr_exporter
 Restart=on-failure
 
 

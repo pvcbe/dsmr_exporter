@@ -7,15 +7,16 @@ dsmr_exporter can read data from:
 - multiple serial port's
 - multiple esp8266's
 
-This software needs hardware to work.  To find out more about the supported hardware, check out [docs/hardware.md]
+This software needs hardware to work.  To find out more about the supported hardware, check out `docs/hardware.md`
 
 
 # installation
 
 ## from source
 
+    sudo pip3 install pyserial
+    sudo pip3 install elasticsearch
     git clone https://github.com/pvcbe/dsmr_exporter.git
-    pip3 install elasticsearch
     
 ## pip
 
@@ -51,7 +52,16 @@ option                     |environment variable| default |
 `--elastic-host`           | `ELASTIC_HOST`     | localhost:9200
 `--elastic-index`          | `ELASTIC_INDEX`    | dsmr-%Y.%m
 
+# example dashboard
 
+![grafana dashboard](docs/dashboards/grafana_dashboard.png)
+
+there are is an example dashboard for **elasticserach** and one for **grafana**.  They are located under `docs/dashboards`.
+The grafana source name is **elasticsearch-dsmr**.  don't forget to create a datasource with that name (ore change the dashboard) 
+
+# elasticsearch
+
+It is wise to create a rollup job or delete old dsmr indexes.  Or to buy more storage as time passes :)
 
 # reference
 

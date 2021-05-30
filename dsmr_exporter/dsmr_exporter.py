@@ -31,13 +31,13 @@ import select
 try:
     import elasticsearch
 except ModuleNotFoundError:
-    print("ERROR: elasticsearch library not found, please install 'pip3 install elasticsearch'")
+    print("ERROR: elasticsearch library not found, please install by typing 'pip3 install elasticsearch'")
     sys.exit(1)
 
 try:
     import serial
 except ModuleNotFoundError:
-    print("ERROR: pyserial library not found, please install 'pip3 install pyserial'")
+    print("ERROR: pyserial library not found, please install by typing 'pip3 install pyserial'")
     sys.exit(1)
 
 __version__ = '0.0.1'
@@ -306,7 +306,7 @@ def main():
     logger.addHandler(console)
     # log.addHandler(logging.handlers.RotatingFileHandler('/var/log/{}.log'.format(progname), maxBytes=100000))
 
-    ap = argparse.ArgumentParser(description='dsmr p1 data to elasticsearch')
+    ap = argparse.ArgumentParser(description='dsmr p1 data exporter to elasticsearch')
     ap.add_argument('--p1-host',
                     action='append',
                     default=[os.getenv('P1_HOST')],
