@@ -387,7 +387,7 @@
       },
       "id": 14,
       "panels": [],
-      "title": "Volt & Ampére",
+      "title": "Volt & Ampère",
       "type": "row"
     },
     {
@@ -732,7 +732,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Ampére",
+      "title": "Ampère",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -893,7 +893,7 @@
           "timeFrom": null,
           "timeRegions": [],
           "timeShift": null,
-          "title": "total kWh used ☀️/ 🌙",
+          "title": "total kWh used ☀️/🌙",
           "tooltip": {
             "shared": true,
             "sort": 0,

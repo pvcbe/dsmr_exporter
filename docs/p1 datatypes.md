@@ -2,7 +2,7 @@
 dsmr telegram data types
 =====
 
-electricity
+Electricity
 -----
 
 name                                                                       | key             | value
@@ -39,8 +39,8 @@ Instantaneous active power L3 (-P)                                         | 1-0
 
 
 
-gas
-----
+Gas
+-----
 
 
 
