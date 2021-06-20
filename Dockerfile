@@ -6,5 +6,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY dsmr_exporter/dsmr_exporter.py .
 
-CMD [ "python", "./dsmr2elastic.py" ]
+CMD [ "python", "./dsmr_exporter.py" ]
 
