@@ -1,18 +1,17 @@
 # dsmr exporter
 
+dsmr exporter is a daemon that reads smart meter P1 data (dsmr) and converts it to an elastic search document.
 
-dsmr exporter is a daemon that reads smart meter  p1 data (dsmr) and converts it to a elastic search document.
-
-dsmr_exporter can read data from: 
-- multiple serial port's
+dsmr_exporter can read data from:
+- multiple serial ports
 - multiple esp8266's
 
-This software needs hardware to work.  To find out more about the supported hardware, check out `docs/hardware.md`
+This software needs hardware to work. To find out more about the supported hardware, check out [`docs/hardware.md`](docs/hardware.md).
 
 
-# installation
+# Installation
 
-## from source
+## From source
 
     sudo pip3 install pyserial
     sudo pip3 install elasticsearch
@@ -23,13 +22,13 @@ This software needs hardware to work.  To find out more about the supported hard
 TODO
 
      
-# using
+# Using
 
-this example reads data from the *ttyUSB0* serial port and export the data to host *192.168.0.103*
+This example reads data from the *ttyUSB0* serial port and exports the data to host *192.168.0.103*
 
      ./dsmr_exporter.py --serial /dev/ttyUSB0 --elastic-host 192.168.0.103
 
-- attention: your user needs read access to the serial device
+- Attention: Your user needs read access to the serial device
 
 
       export P1_SERIAL=/dev/ttyUSB0
@@ -38,13 +37,12 @@ this example reads data from the *ttyUSB0* serial port and export the data to ho
       ./dsmr_exporter.py
 
     
-this example uses environment variables to read its config:
+This example uses environment variables to read its config:
 - serial input on `/dev/ttyUSB0`
-- tcp host `10.0.0.16` on port `5678` and tcp host `172.16.0.2` on port `8898`
-- elastic search host on ip `192.168.0.103` on port `1234`
+- TCP host `10.0.0.16` on port `5678` and TCP host `172.16.0.2` on port `8898`
+- elastic search host on IP `192.168.0.103` and port `1234`
 
-
-## options
+## Options
 
 option                     |environment variable| default |
 ---------------------------|--------------------|----------
@@ -53,18 +51,21 @@ option                     |environment variable| default |
 `--elastic-host`           | `ELASTIC_HOST`     | localhost:9200
 `--elastic-index`          | `ELASTIC_INDEX`    | dsmr-%Y.%m
 
-# example dashboard
+
+# Example dashboard
 
 ![grafana dashboard](docs/dashboards/grafana_dashboard.png)
 
-there are is an example dashboard for **elasticserach** and one for **grafana**.  They are located under `docs/dashboards`.
-The grafana source name is **elasticsearch-dsmr**.  don't forget to create a datasource with that name (ore change the dashboard) 
+There is an example dashboard for **elasticserach** and one for **grafana**.  They are located under [`docs/dashboards`](docs/dashboards).
+The grafana source name is **elasticsearch-dsmr**. Don't forget to create a datasource with that name (or change the dashboard).
 
-# elasticsearch
 
-It is wise to create a rollup job or delete old dsmr indexes.  Or to buy more storage as time passes :)
+# Elasticsearch
 
-# reference
+It is wise to create a rollup job or delete old dsmr indexes. Or to buy more storage as time passes :)
+
+
+# Reference
 
 [dsmr standard document](https://www.netbeheernederland.nl/_upload/Files/Slimme_meter_15_a727fce1f1.pdf)
 
