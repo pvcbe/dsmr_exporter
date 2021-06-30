@@ -146,17 +146,30 @@ class DsmrExporter:
         if port < 1 or port > 65535:
             raise ValueError("not a valid port: {}".format(port))
         s = socket.socket()
-        s.settimeout(10)
-        s.connect((host, port))
         s.settimeout(self.socket_stall_detect_timeout)
+        s.connect((host, port))
+        self.p1hosts.append(s)
+        self.p1host_last_data_time[(s.getpeername()[0], s.getpeername()[1])] = datetime.datetime.now()
+
+    def reconnect_tcp_input(self, existing_socket):
+        (existing_host, existing_port) = existing_socket.getpeername()
+        s = socket.socket()
+        s.settimeout(self.socket_stall_detect_timeout)
+        try:
+            s.connect((existing_host, existing_port))
+        except socket.timeout:
+            del s
+            return
+        except OSError:
+            del s
+            return
 
         for sock in self.p1hosts:
-            if host == s.getpeername()[0] and port == s.getpeername()[1]:
-                self.logger.warning("Socket already esxists, deleting before reconnecting")
-                del sock
-
+            if sock.getpeername()[0] == existing_host and sock.getpeername()[1] == existing_port:
+                self.logger.debug("Socket already esxists, deleting before reconnecting")
+                self.p1hosts.remove(sock)
         self.p1hosts.append(s)
-        self.p1host_last_data_time[s] = datetime.datetime.now()
+        self.p1host_last_data_time[(s.getpeername()[0], s.getpeername()[1])] = datetime.datetime.now()
 
     def connect_elastic_output(self, host, port):
         port = int(port)
@@ -220,12 +233,12 @@ class DsmrExporter:
                             input_buffer = s.recv(self.tcp_buffer_size).decode()
                             # todo: rate limit wrong data?
                             self.logger.debug("DEBUG| read_sockets:{}".format(read_sockets))
-                            self.check_p1host_timeout(s)
+                            self.reset_p1host_timeout(s)
                     except TimeoutError:
                         if type(s).__name__ == "Serial":
                             self.logger.debug("DEBUG| serial timeout for port {}".format(s.port))
                         else:
-                            self.connect_tcp_input(s.getpeername()[0], s.getpeername()[1])
+                            self.reconnect_tcp_input(s)
                         continue
                     except UnicodeDecodeError:
                         if type(s).__name__ == "Serial":
@@ -259,20 +272,23 @@ class DsmrExporter:
             self.check_p1host_timeout()
             time.sleep(1)
 
-    def check_p1host_timeout(self, host=None):
-        if host is None:
-            socket_stall_detect_timeout = datetime.timedelta(seconds=self.socket_stall_detect_timeout)
-            for s in self.p1hosts:
-                self.logger.debug(
-                    "DEBUG| check_p1host_timeout[{}:{}]: delta {}".format(s.getpeername()[0], s.getpeername()[1],
-                                                                          self.p1host_last_data_time[
-                                                                              s] + socket_stall_detect_timeout))
-                if (self.p1host_last_data_time[s] + socket_stall_detect_timeout) < datetime.datetime.now():
-                    self.logger.warning("WARNING| host {} timeout, reconnecting".format(s))
-                    self.connect_tcp_input(s.getpeername()[0], s.getpeername()[1])
-        else:
-            self.p1host_last_data_time[host] = datetime.datetime.now()
-            self.logger.debug("DEBUG| check_p1host_timemout set for {}".format(host))
+    def check_p1host_timeout(self):
+        socket_stall_detect_timeout = datetime.timedelta(seconds=self.socket_stall_detect_timeout)
+        for s in self.p1hosts:
+            self.logger.debug(
+                "DEBUG| check_p1host_timeout[{}:{}]: delta {}".format(s.getpeername()[0], s.getpeername()[1],
+                                                                      self.p1host_last_data_time[
+                                                                          (s.getpeername()[0],s.getpeername()[1])]
+                                                                      + socket_stall_detect_timeout)
+            )
+            if (self.p1host_last_data_time[(s.getpeername()[0],s.getpeername()[1])] + socket_stall_detect_timeout) < datetime.datetime.now():
+                self.logger.warning("WARNING| host {} timeout, reconnecting".format(s))
+                self.reconnect_tcp_input(s)
+
+    def reset_p1host_timeout(self, peer_socket):
+        (host,port) = peer_socket.getpeername()
+        self.p1host_last_data_time[(host,port)] = datetime.datetime.now()
+        self.logger.debug("DEBUG| set_p1host_timeout set for {}".format((host,port)))
 
     def stop(self):
         for s in self.p1hosts:
