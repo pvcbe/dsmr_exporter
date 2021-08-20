@@ -213,8 +213,9 @@ class DsmrExporter:
             res = None
             # todo: with backlog buffer
         if res:
-            if res['result'] != "created":
-                print(res['result'])
+            result = res.get("result")
+            if result != "created":
+                print(result)
         else:
             print('!', end='')
 
