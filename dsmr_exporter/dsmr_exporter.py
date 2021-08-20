@@ -187,7 +187,7 @@ class DsmrExporter:
 
     def telegram_to_json(self, telegram):
         # todo: detectet if input is ok
-        doc = {'@timestamp': datetime.datetime.utcnow()}
+        doc = {'@timestamp': datetime.datetime.now(datetime.timezone.utc)}
         self.logger.debug("DEBUG| telegram {}".format(telegram))
         for item in telegram:
             validated_data = self.re_validate_telegram_line.search(item)
@@ -204,7 +204,7 @@ class DsmrExporter:
         return doc
 
     def doc_put(self, doc):
-        index_and_date = datetime.datetime.utcnow().strftime(self.elastic_index)
+        index_and_date = datetime.datetime.now(datetime.timezone.utc).strftime(self.elastic_index)
         self.logger.debug("DEBUG| index_and_date:" + index_and_date)
         try:
             res = self.elastic_host.index(index=str(index_and_date), body=doc)
