@@ -166,7 +166,7 @@ class DsmrExporter:
 
         for sock in self.p1hosts:
             if sock.getpeername()[0] == existing_host and sock.getpeername()[1] == existing_port:
-                self.logger.debug("Socket already esxists, deleting before reconnecting")
+                self.logger.debug("Socket already exists, deleting before reconnecting")
                 self.p1hosts.remove(sock)
         self.p1hosts.append(s)
         self.p1host_last_data_time[(s.getpeername()[0], s.getpeername()[1])] = datetime.datetime.now()
@@ -181,12 +181,12 @@ class DsmrExporter:
             # self.elastic_host = elasticsearch.Elasticsearch([host + ':' + str(port)], sniff_on_start=True)
             self.elastic_host = elasticsearch.Elasticsearch([host + ':' + str(port)])
         except elasticsearch.exceptions.TransportError:
-            self.logger.info("warning: elasticsearch not sniffable, continueing without sniffing")
+            self.logger.info("warning: elasticsearch not sniffable, continuing without sniffing")
             self.elastic_host = elasticsearch.Elasticsearch([host + ':' + str(port)])
         # todo: index template upload
 
     def telegram_to_json(self, telegram):
-        # todo: detectet if input is ok
+        # todo: detect if input is ok
         doc = {'@timestamp': datetime.datetime.now(datetime.timezone.utc)}
         self.logger.debug("DEBUG| telegram {}".format(telegram))
         for item in telegram:
@@ -200,12 +200,12 @@ class DsmrExporter:
                     pass
                 doc[key] = value
         self.logger.debug("DEBUG| doc={}".format(doc))
-        self.logger.debug("DEBUG| telegra_to_json --------------------------------------------")
+        self.logger.debug("DEBUG| telegram_to_json --------------------------------------------")
         return doc
 
     def doc_put(self, doc):
         index_and_date = datetime.datetime.now(datetime.timezone.utc).strftime(self.elastic_index)
-        self.logger.debug("DEBUG| index_and_date:" + index_and_date)
+        self.logger.debug("DEBUG| index_and_date: {}".format(index_and_date))
         try:
             res = self.elastic_host.index(index=str(index_and_date), body=doc)
         except elasticsearch.exceptions.ConnectionError as e:
@@ -223,7 +223,7 @@ class DsmrExporter:
         while 1:
             read_sockets = select.select(self.p1hosts + self.p1serial_ports, [], [], self.socket_stall_detect_timeout)[
                 0]
-            self.logger.debug("DEBUG| read_sockets:{}".format(read_sockets))
+            self.logger.debug("DEBUG| read_sockets: {}".format(read_sockets))
             if read_sockets:
                 for s in read_sockets:
                     try:
@@ -233,7 +233,7 @@ class DsmrExporter:
                         else:
                             input_buffer = s.recv(self.tcp_buffer_size).decode()
                             # todo: rate limit wrong data?
-                            self.logger.debug("DEBUG| read_sockets:{}".format(read_sockets))
+                            self.logger.debug("DEBUG| read_sockets: {}".format(read_sockets))
                             self.reset_p1host_timeout(s)
                     except TimeoutError:
                         if type(s).__name__ == "Serial":
@@ -245,7 +245,7 @@ class DsmrExporter:
                         if type(s).__name__ == "Serial":
                             self.logger.debug("DEBUG| decode error for serial port {}".format(s.port))
                         else:
-                            self.logger.debug("DEBUG| decode error for host {}".format(s.getpeername()[0], s.getpeername()[1]))
+                            self.logger.debug("DEBUG| decode error for host {}:{}".format(s.getpeername()[0], s.getpeername()[1]))
                         continue
                     telegram = []
                     for line in input_buffer.split():
@@ -262,14 +262,14 @@ class DsmrExporter:
                                 try:
                                     self.doc_put(doc)
                                 except elasticsearch.exceptions.TransportError:
-                                    self.logger.error("elastci backpressure 429 NOT_IMPLEMENTED")
+                                    self.logger.error("elastic backpressure 429 NOT_IMPLEMENTED")
                                     # TransportError(429
                             telegram = []
                         elif "(" in line and ")" in line:
                             telegram.append(line)
 
             else:
-                self.logger.warning("WARNING| run didn't receive data in a timley fassion")
+                self.logger.warning("WARNING| run didn't receive data in a timely fassion")
             self.check_p1host_timeout()
             time.sleep(1)
 
@@ -287,9 +287,9 @@ class DsmrExporter:
                 self.reconnect_tcp_input(s)
 
     def reset_p1host_timeout(self, peer_socket):
-        (host,port) = peer_socket.getpeername()
-        self.p1host_last_data_time[(host,port)] = datetime.datetime.now()
-        self.logger.debug("DEBUG| set_p1host_timeout set for {}".format((host,port)))
+        (host, port) = peer_socket.getpeername()
+        self.p1host_last_data_time[(host, port)] = datetime.datetime.now()
+        self.logger.debug("DEBUG| reset_p1host_timeout reset for {}".format((host, port)))
 
     def stop(self):
         for s in self.p1hosts:
@@ -327,8 +327,8 @@ def main():
     ap.add_argument('--p1-host',
                     action='append',
                     default=[os.getenv('P1_HOST')],
-                    help="p1 source hosts in a host<:port> (multiple times possible, comma sepperated)\n Environment "
-                         "var: P1_HOST "
+                    help="p1 source hosts in a host<:port> (multiple times possible, comma separated)\n Environment "
+                         "var: P1_HOST"
                     )
     ap.add_argument('--p1-serial',
                     action='append',
@@ -351,16 +351,16 @@ def main():
                     type=int,
                     default=os.getenv('ELASTIC_INTERVAL'),
                     help="elasticsearch publish interval, minimal is 1\nEnvironment var: ELASTIC_INTERVAL "
-                         "NOT_IMPLEMENTED "
+                         "NOT_IMPLEMENTED"
                     )
     ap.add_argument('--elastic-index', '--index',
                     default=os.getenv('ELASTIC_INDEX', 'dsmr-%Y.%m'),
-                    help="elasticsearch index name.  Default is 'dsmr-%%Y.%%m', will be parse with python strftime("
-                         "'%%Y.%%m') Environment var: ELASTIC_INDEX "
+                    help="elasticsearch index name.  Default is 'dsmr-%%Y.%%m', will be parsed with python strftime("
+                         "'%%Y.%%m') Environment var: ELASTIC_INDEX"
                     )
     ap.add_argument('--elastic-create-dashboards', '-c',
                     action='store_true',
-                    help="upload's the default dashboards into elasticsearch TODO"
+                    help="uploads the default dashboards into elasticsearch TODO"
                     )
     ap_logging_group = ap.add_mutually_exclusive_group()
     ap_logging_group.add_argument(
@@ -407,8 +407,7 @@ def main():
                     for detected_port in detected_ports:
                         valid_serial += "    {}{}{}\n".format(detected_port[0].ljust(20), detected_port[1].ljust(20),
                                                               detected_port[2])
-                    die("FATAL| port {} is not a a valid com port\nvalid ports are:\n{}".format(port,
-                                                                                                      valid_serial))
+                    die("FATAL| port {} is not a valid com port\nvalid ports are:\n{}".format(port, valid_serial))
                 else:
                     p1_serial[port] = available_serial[port]
 
@@ -427,7 +426,7 @@ def main():
                     host, port = host.split(':')
                     p1_hosts[(host, port)] = None
                 except ValueError:
-                    die("FATAL| host not parseable {}".format(host))
+                    die("FATAL| host not parsable {}".format(host))
             break
 
     if p1_hosts == {} and p1_serial == {}:
@@ -457,7 +456,7 @@ def main():
             die("FATAL| error while connecting input host {}:{}.\nERROR| {}".format(host, port, e))
 
     # elastic output
-    # todo regex parse hostname with capture groep to make it more robust
+    # todo regex parse hostname with capture group to make it more robust
     # todo: elastic connect faster detect faults
     if type(options.elastic_host) is type([]):
         options.elastic_host = options.elastic_host[0]
@@ -475,7 +474,7 @@ def main():
     except socket.gaierror:
         die("FATAL| elasticsearch hostname '{}' not resolvable".format(elastic_host))
     except elasticsearch.exceptions.ConnectionError:
-        die("FATAL| elastic search not reachable")
+        die("FATAL| elasticsearch not reachable")
 
     de.elastic_index = options.elastic_index
 
@@ -501,4 +500,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
