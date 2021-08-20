@@ -479,12 +479,8 @@ def main():
 
     de.elastic_index = options.elastic_index
 
-    serial_ports_string = ""
-    for serial in p1_serial.keys():
-        serial_ports_string += str(serial)
-    hosts = ""
-    for host, port in p1_hosts.keys():
-        hosts += str(host + ':' + port)
+    serial_ports_string = ", ".join(map(str, p1_serial.keys()))
+    hosts = ", ".join(["{}:{}".format(host, port) for host, port in p1_hosts.keys()])
 
     logger.info("- serial inputs are: '{}'".format(serial_ports_string))
     logger.info("- tcp inputs are:    '{}'".format(hosts))
